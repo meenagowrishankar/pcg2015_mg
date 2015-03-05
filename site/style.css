@@ -1,0 +1,112 @@
+#nav li {display: inline-block;}
+
+#index {
+		background-color: #001122;
+		color: yellow;
+	}
+
+	h1{
+		font-family: verdana;
+		font-size: 72px;
+		color: white;
+		border-style: groove;
+		border-color: #98bf21; 
+		padding: 10px 15px 5px 20px;
+		position: fixed;
+		background-color: #441122;
+		
+		}
+	
+th {
+	text-align: left;
+	color: red;
+	background-color: #FFEE11;
+
+}
+#nav{
+	padding-top: 200px;
+	text-align: center;
+}
+#nav h2{
+	text-align: center;
+}
+/*Resume*/
+
+#resume {
+	background-color: #6666ff;
+}
+
+#identity{
+	text-align: center;
+	font-family: verdana;
+	font-style: oblique;
+}
+#food1 {
+  border: 0px solid #ccc;
+  display: none;
+  font-size: 10px;
+  /*margin-top: 10px;*/
+  padding: 5px;
+  text-transform: uppercase;
+}
+#serious{
+	float: right;
+	width: 20%;
+}
+/*#trad{
+	text-align: center;
+	width: 20%;
+}*/
+#skills:hover #food1{
+	display: block;
+}
+#music1 {
+  border: 0px solid #ccc;
+  display: none;
+  font-size: 10px;
+  /*margin-top: 10px;*/
+  padding: 5px;
+  text-transform: uppercase;
+}
+
+#skills:hover #music1{
+	display: block;
+}
+
+#politics1 {
+  border: 0px solid #ccc;
+  display: none;
+  font-size: 10px;
+  /*margin-top: 10px;*/
+  padding: 5px;
+  text-transform: uppercase;
+}
+
+#skills:hover #politics1{
+	display: block;
+}
+#rule {
+  border: 0px solid #ccc;
+  display: none;
+  font-size: 10px;
+  /*margin-top: 10px;*/
+  padding: 5px;
+  text-transform: uppercase;
+}
+
+#skills:hover #rule{
+	display: block;
+}
+
+#chemistry {
+  border: 0px solid #ccc;
+  display: none;
+  font-size: 10px;
+  /*margin-top: 10px;*/
+  padding: 5px;
+  text-transform: uppercase;
+}
+
+#skills:hover #chemistry{
+	display: block;
+}
