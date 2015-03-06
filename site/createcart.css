@@ -8,4 +8,24 @@
 
  	border: 1px solid #cecfd5;
   	padding: 10px 15px;
+  	text-align: center;
+  	background-color: #ff3399;
   }
+
+  .qty_size {
+  	width: 50px;
+  }
+  .prod_code{
+
+  }
+  .price_ech{
+
+  }
+
+  .qty_price{
+
+  }
+
+ .total{
+ 	text-align: right;
+ }
