@@ -1,0 +1,9 @@
+.registration{
+	display: inline-block;
+}
+
+.details{
+	display: block;
+	float: right;
+	width: 150px;
+}

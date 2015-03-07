@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
 	<link href = "createcart.css" type = "text/css" rel="stylesheet"
@@ -41,12 +41,12 @@
 					Actions
 				</th>
 			</tr>
-			<tr class = "cart-line">
+			<tr id = "1" class = "cart-line">
 				<td class = "number">
 					1
 				</td>
 				<td class = "qty">
-					<input type = number value = "10" class = "qty_size"></input>
+					<input type = number value = "0" class = "qty_size"></input>
 				</td>
 				<td class = "prod_code">
 					g6	
@@ -61,15 +61,15 @@
 					110	
 				</td>
 				<td>
-					<a href = "#remove">Remove</a>	
+					<input type = "button" value = "remove" onClick = "removeLine(1)"><!-- <a href = "#remove">Remove</div> -->	
 				</td>
 			</tr>
-			<tr class = "cart-line">
+			<tr id = "2" class = "cart-line">
 				<td>
 					2
 				</td>
 				<td class = "qty">
-					<input type = number value = "20" class = "qty_size"></input>
+					<input type = number value = "0" class = "qty_size"></input>
 				</td>
 				<td class = "prod_code">
 					PCS150	
@@ -84,16 +84,16 @@
 					240	
 				</td>
 				<td>
-					<a href = "#remove">Remove</a>	
+					<input type = "button" value = "remove" onClick = "removeLine(2)">
 				</td>
 
 			</tr>
-			<tr class = "cart-line">
+			<tr id = "3" class = "cart-line">
 				<td>
 					3
 				</td>
 				<td class = "qty">
-					<input type = number value = "30" class = "qty_size"></input>
+					<input type = number value = "0" class = "qty_size"></input>
 				</td>
 				<td class = "prod_code">
 					PCS000	
@@ -108,7 +108,7 @@
 					450	
 				</td>
 				<td>
-					<a href = "#remove">Remove</a>
+					<input type = "button" value = "remove" onClick = "removeLine(3)">
 				</td>
 
 			</tr>
@@ -165,7 +165,19 @@
 			});
 		}
 		getTotal();
+
+				
+
 	});
+	
+	function removeLine (lineId){
+			var line = document.getElementById(lineId);
+
+			line.parentNode.removeChild(line);	
+
+			getTotal();
+		}
+
 </script>
 </body>
 </html>
