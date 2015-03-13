@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+
+
+
+
+    az = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    for (var i = 0; i < az.length; i++) {
+        //createIndexItem(az[i])
+    }
+
+    function isAlpha(c){
+        var u = c.toUpperCase();
+        return !(az.indexOf(u) == -1);
+    }
+    function createIndexItem(letter) {
+        var hash = letter.toLowerCase();
+        var display = letter.toUpperCase();
+        var anchorElement = document.createElement("a");
+        anchorElement.setAttribute("href", "#" + hash);
+        var text = document.createTextNode(display);
+        anchorElement.appendChild(text);
+        document.body.appendChild(anchorElement);
+    }
+    a = "a".charCodeAt(0);
+    z = "z".charCodeAt(0);
+    for (var c = a; c <= z; c++) {
+        var letter = String.fromCharCode(c);
+        createIndexItem(letter)
+    }
+</script>
+<a href="#a">A</a>
+<a href="#b">B</a>
+<a href="#c">C</a>
+<span>
+    ...
+</span>
+<ul>
+    <li>
+        <h1>A</h1>
+        <div>Kevin Abott 123 </div>
+        <div>Kevin Abott 123 </div>
+        <div>Kevin Abott 123 </div>
+    </li>
+    <li>
+        <h1>B</h1>
+        <div>Kevin Boing 123 </div>
+        <div>Kevin Bob 123 </div>
+        <div>Kevin Billy 123 </div>
+    </li>
+</ul>
+</body>
+</html> 

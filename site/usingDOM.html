@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function createIndexItem(letter) {
+        var hash = letter.toLowerCase();
+        var display = letter.toUpperCase();
+        var anchorElement = document.createElement("a");
+        anchorElement.setAttribute("href", "#" + hash);
+        var text = document.createTextNode(display);
+        anchorElement.appendChild(text);
+        document.body.appendChild(anchorElement);
+    }
+    a = "a".charCodeAt(0);
+    z = "z".charCodeAt(0);
+    for (var c = a; c <= z; c++) {
+        var letter = String.fromCharCode(c);
+        createIndexItem(letter);
+    }
+    tenants = [
+        {
+            "name": "Kevin Long",
+            "suite": 111
+        },
+        {
+            "name": "Kay Long",
+            "suite": 112
+        },
+        {
+            "name": "John Long",
+            "suite": 113
+        },
+        {
+            "name": "Jack Richards",
+            "suite": 211
+        },
+        {
+            "name": "Arthur Wright",
+            "suite": 212
+        },
+        {
+            "name": "abc",
+            "suite": 123
+        },
+        {
+            "name": "31 flavors",
+            "suite": 231
+        },
+        {
+            "name": "!@#$%^&*()",
+            "suite": 213
+        }
+    ];
+    var directory = {};
+    for (var i in tenants) {
+        var t = tenants[i];
+        var first_letter = t["name"][0].toUpperCase();
+        if (!directory.hasOwnProperty(first_letter)) {
+            directory[first_letter] = [];
+        }
+        directory[first_letter].push(t);
+
+    }
+var keys = Object.keys(directory);
+console.log(keys);
+keys.sort();
+console.log(keys);    
+
+    for (var letter in directory) {
+
+        var d = directory[letter];
+        var titleDiv = document.createElement("div");
+        var headline = document.createElement("h4")
+        var titletext = document.createTextNode("===" + letter + "===");
+        headline.id = letter.toLowerCase();
+        headline.appendChild(titletext);
+        titleDiv.appendChild(headline);
+        document.body.appendChild(titleDiv);
+
+        // document.write("===" + letter + "===" + "<br>");
+        for (i in d) {
+            var t = d[i];
+            var subtext = document.createElement("ul");
+            var subtext_name = document.createTextNode(" " + t["name"] + " " + t["suite"]);
+            subtext.appendChild(subtext_name);
+            titleDiv.appendChild(subtext);
+            document.body.appendChild(titleDiv);    
+            // document.write(" " + t["name"] + " " + t["suite"] + "<br>");
+        }
+
+    }
+
+    
+</script>
+</body>
+</html>

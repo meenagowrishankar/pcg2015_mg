@@ -7,6 +7,10 @@ var tenant = {
 	"A": [{
 		"name": "Ashton K",
 		"suite": "1"
+	},
+	{
+		"name": "Adam K",
+		"suite": "1"
 	}],
 	"C": [{
 		"name": "Clancy Z",
@@ -27,22 +31,30 @@ var tenant = {
 	}]
 };
 
-// console.log(tenant.A);
+
 // var x = [3, 1, 2, 5]/
 // x.sort();
 // console.log(x);
 
 function listTenant(tenant){
-	for (var key in tenant){
-		var a = key;
-		var y = key.length;
-		console.log(y, a[0]);
+	for (var letter in tenant){
+		
+		document.write("===" + letter + "===" + "<br>");
+		for (var key in letter){
+			var a = tenant[letter][key];
+
+		document.write(a);
+	}
+		// for (var i in key){
+	}	// 	var a = key[i]
+		// 	console.log(a);
+		
 
 		// for (var i = 0; i < y; i++){
 		// 	var z = a[i];
 		// 	console.log(z);
 	};
-}
+
 
 listTenant(tenant);
 
