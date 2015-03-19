@@ -5,6 +5,8 @@
     <title></title>
 </head>
 <body>
+    <div id = "titleAZ" style = "position: fixed; top:0;"></div>
+    <div id = "listName"></div>
 <script>
     function createIndexItem(letter) {
         var hash = letter.toLowerCase();
@@ -12,8 +14,11 @@
         var anchorElement = document.createElement("a");
         anchorElement.setAttribute("href", "#" + hash);
         var text = document.createTextNode(display);
+        var x = document.getElementById("titleAZ");
+        
         anchorElement.appendChild(text);
-        document.body.appendChild(anchorElement);
+
+        x.appendChild(anchorElement);
     }
     a = "a".charCodeAt(0);
     z = "z".charCodeAt(0);
@@ -59,12 +64,30 @@
     for (var i in tenants) {
         var t = tenants[i];
         var first_letter = t["name"][0].toUpperCase();
+        var name = t.name;
+        var words = new RegExp(/^[ a-z]+$/i);
+
+        if(words.test(name)){
+            var name_split = name.split(" ");
+            if(name_split.length >= 2){
+                lname = name_split[name_split-1];
+                first_letter = lname[0].toUpperCase();
+                t.sortname = lname + name_split[0];
+            }else{
+                t.sortname = t.name;
+            }}
+        else{
+            first_letter = "*";
+            t.sortname = t.name;
+        }}
+        
+
         if (!directory.hasOwnProperty(first_letter)) {
             directory[first_letter] = [];
         }
         directory[first_letter].push(t);
 
-    }
+    
 var keys = Object.keys(directory);
 console.log(keys);
 keys.sort();
@@ -76,19 +99,21 @@ console.log(keys);
         var titleDiv = document.createElement("div");
         var headline = document.createElement("h4")
         var titletext = document.createTextNode("===" + letter + "===");
+        var y = document.getElementById("listName")
         headline.id = letter.toLowerCase();
         headline.appendChild(titletext);
         titleDiv.appendChild(headline);
-        document.body.appendChild(titleDiv);
+        y.appendChild(titleDiv);
 
         // document.write("===" + letter + "===" + "<br>");
         for (i in d) {
             var t = d[i];
             var subtext = document.createElement("ul");
             var subtext_name = document.createTextNode(" " + t["name"] + " " + t["suite"]);
+            var y = document.getElementById("listName")
             subtext.appendChild(subtext_name);
             titleDiv.appendChild(subtext);
-            document.body.appendChild(titleDiv);    
+            y.appendChild(titleDiv);    
             // document.write(" " + t["name"] + " " + t["suite"] + "<br>");
         }
 
