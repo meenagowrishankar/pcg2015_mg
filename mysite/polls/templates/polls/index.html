@@ -1,3 +1,23 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+<a href="/polls/register/">Register Here</a>
+<a href="/polls/login/">Login</a>
+
+
+{% if user.is_authenticated %}
+<a href="/polls/restricted/">Restricted Page</a><br />
+<a href="/polls/logout/">Logout</a><br />
+{% else %}
+<a href="/polls/register/">Register Here</a><br />
+<a href="/polls/login/">Login</a><br />
+{% endif %}
+{% if user.is_authenticated %}
+<h1>Rango says... hello {{ user.username }}!</h1>
+{% else %}
+<h1>Rango says... hello world!</h1>
+{% endif %}
+
 {% if latest_question_list %}
     <ul>
     {% for question in latest_question_list %}

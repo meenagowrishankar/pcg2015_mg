@@ -1,5 +1,8 @@
 from django.contrib import admin
+
 from polls.models import Choice, Question
+from polls.models import UserProfile
+
 
 class ChoiceInline(admin.TabularInline):
     model = Choice
@@ -20,4 +23,6 @@ class QuestionAdmin(admin.ModelAdmin):
 
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(Choice)
+admin.site.register(UserProfile)
+
 # Register your models here.
