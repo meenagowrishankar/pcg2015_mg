@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>VotReg</title>
+    </head>
+
+    <body>
+        <h1>{{ state_name }}</h1>
+        {% if state %}
+            {% if pages %}
+            <ul>
+                {% for page in pages %}
+                <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+                {% endfor %}
+            </ul>
+            {% else %}
+                <strong>No pages currently in state.</strong>
+            {% endif %}
+        {% else %}
+            The specified state {{ state_name }} does not exist!
+        {% endif %}
+    </body>
+</html>

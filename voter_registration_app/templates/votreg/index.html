@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>VotReg</title>
+    <!-- //<script type="text/javascript" src="https://www.google.com/jsapi"></script> -->
+    <script type="text/javascript">
+    //   google.load("visualization", "1", {packages:["geomap"]});
+    //   google.setOnLoadCallback(drawMap);
+
+    //   function drawMap() {
+    //     var data = google.visualization.arrayToDataTable([
+    //       ['Country', 'Popularity'],
+    //       ['Germany', 200],
+    //       ['United States', 300],
+    //       ['Brazil', 400],
+    //       ['Canada', 500],
+    //       ['France', 600],
+    //       ['RU', 700]
+    //     ]);
+
+    //     var options = {};
+    //     options['dataMode'] = 'regions';
+
+    //     var container = document.getElementById('regions_div');
+    //     var geomap = new google.visualization.GeoMap(container);
+
+    //     geomap.draw(data, options);
+    //   };
+    //</script>
+    </head>
+
+    <body>
+        <h1>Pick your State!</h1>
+    <form method = "POST" action = "$" name = "search_form">
+        <input type="text" name="state_name" id = "state_name" value = "{{ search }}"><br>
+        <input type="submit" name = "search_state" id = "search_state" value="Submit">
+    </form>
+
+        <!-- {% if states %}
+            <ul>
+                {% for state in states %}
+                {% if state_name = state %}
+                <li><a href="/state/{{ state.name }}">{{ state }}</a></li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+       {% else %}
+            <strong>There are no states present.</strong>
+       {% endif %} -->
+
+       <div id="regions_div" style="width: 900px; height: 500px;"></div>
+
+    </body>
+</html>
