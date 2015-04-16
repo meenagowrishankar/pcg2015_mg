@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from votreg.models import State
 from votreg.models import Page
 
@@ -10,10 +10,16 @@ def index(request):
     state_list = State.objects.all()  
     context_dict = {'states': state_list}
 
+
     if 'search_state' in request.POST:
-        search = request.POST('state_name')
-        state_results = State.objects.filter(name_contains = state_name)
-        state(state_results)
+        try:
+            search = request.POST['state_name']
+            state_results = State.objects.filter(name = search)
+            return HttpResponseRedirect("/state/%s" % search)
+
+        except State.DoesNotExist:
+
+            pass
 
     return render(request, 'votreg/index.html', context_dict)
 

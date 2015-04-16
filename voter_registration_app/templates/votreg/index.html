@@ -31,9 +31,11 @@
 
     <body>
         <h1>Pick your State!</h1>
-    <form method = "POST" action = "$" name = "search_form">
+    <form method = "POST" action = "/" name = "search_form">
+        {% csrf_token %}
         <input type="text" name="state_name" id = "state_name" value = "{{ search }}"><br>
         <input type="submit" name = "search_state" id = "search_state" value="Submit">
+
     </form>
 
         <!-- {% if states %}
