@@ -6,8 +6,11 @@
 
     <body>
         <h1>{{ state_name }}</h1>
+        <!-- state_name imported from views.state, def state from the views.py file -->
         {% if state %}
+        <!-- state imported from views.state -->
             {% if pages %}
+            <!-- pages imported from views.state -->
             <ul>
                 {% for page in pages %}
                 <li><a href="{{ page.url }}">{{ page.title }}</a></li>

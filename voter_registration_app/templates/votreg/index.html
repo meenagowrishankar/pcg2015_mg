@@ -1,42 +1,52 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+
 <html>
+
     <head>
         <title>VotReg</title>
-    <!-- //<script type="text/javascript" src="https://www.google.com/jsapi"></script> -->
-    <script type="text/javascript">
-    //   google.load("visualization", "1", {packages:["geomap"]});
-    //   google.setOnLoadCallback(drawMap);
 
-    //   function drawMap() {
-    //     var data = google.visualization.arrayToDataTable([
-    //       ['Country', 'Popularity'],
-    //       ['Germany', 200],
-    //       ['United States', 300],
-    //       ['Brazil', 400],
-    //       ['Canada', 500],
-    //       ['France', 600],
-    //       ['RU', 700]
-    //     ]);
-
-    //     var options = {};
-    //     options['dataMode'] = 'regions';
-
-    //     var container = document.getElementById('regions_div');
-    //     var geomap = new google.visualization.GeoMap(container);
-
-    //     geomap.draw(data, options);
-    //   };
-    //</script>
+    
     </head>
 
     <body>
-        <h1>Pick your State!</h1>
-    <form method = "POST" action = "/" name = "search_form">
+        <h1>Exercise your right. Register to Vote.</h1>
+        <h2>Choose your state!</h2>
+    <form method = "POST" action = "/" name = "search_form" id = "search_form">
+        <!-- "search_form used in the index view for the search filter" -->
         {% csrf_token %}
-        <input type="text" name="state_name" id = "state_name" value = "{{ search }}"><br>
-        <input type="submit" name = "search_state" id = "search_state" value="Submit">
+        <!-- <input type="text" name="state_name" id = "state_name" value = "{{ search }}"><br> -->
+         <!-- {{ search }} comes from index.views -->
+<!--         <input type="submit" name = "search_state" id = "search_state" value="Submit">
+ -->
+        <select name = "state_name" id = "state_name" form = "search_form" onchange = "search_state">
+    {#once the if statement runs in views.index, state_name, which is the selected state, is used to redirect to the state pages url#}
+            {% for i in states %}
+                <option name = "state_select" value = "{{ i.name }}">{{ i.display }}</option>
+            {% endfor %}
 
+        </select>
+
+        <input type="submit" name = "search_state" id = "search_state" value="Submit">
+{#    when submit it clicked the if statement in views.index starts running and refers to state_name in select#}
     </form>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+    <script src="{% static "maps/datamap.usa.min.js" %}"></script>
+    <div id="container" style="position: absolute; width: 1000px; height: 600px;"></div>
+    <script>
+        var map = new Datamap({
+            element: document.getElementById('container'),
+            scope: 'usa',
+            done: function(datamap) {
+            datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
+                // console.log(geography);
+                window.location = "/state/" + geography.properties.name.toUpperCase().replace(' ', '_') + "/";
+            });
+        }
+    })
+    </script>
 
         <!-- {% if states %}
             <ul>

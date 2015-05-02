@@ -2,19 +2,30 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from votreg.models import State
 from votreg.models import Page
+from django.utils.text import slugify
+# import json
 
 
 
 def index(request):
 
-    state_list = State.objects.all()  
-    context_dict = {'states': state_list}
+    state_list = State.objects.all()
+    
+    states = []
+    for i in state_list:
+        state_lookup_name = i.name.replace(' ', '_')
+        states.append({'name': state_lookup_name, 'display': i.name})
+        # return state_lookup_name
+
+
+    context_dict = {'states': states}
 
 
     if 'search_state' in request.POST:
         try:
             search = request.POST['state_name']
-            state_results = State.objects.filter(name = search)
+            # search_name = search.upper()
+            state_results = State.objects.filter(name=search)
             return HttpResponseRedirect("/state/%s" % search)
 
         except State.DoesNotExist:
@@ -32,8 +43,9 @@ def state(request, state_name):
     context_dict = {}
 
     try:
-
-        state = State.objects.get(name = state_name)
+        state_name = state_name.replace('_', ' ')
+        print state_name
+        state = State.objects.get(name=state_name)
         context_dict['state_name'] = state.name
         pages = Page.objects.filter(states=state)
         context_dict['pages'] = pages
@@ -47,6 +59,26 @@ def state(request, state_name):
     return render(request, 'votreg/state.html', context_dict)
 
         # state(state_results)
+
+# def json_data(request):
+
+#     state = State.objects.all()
+#     json_state = []
+
+#     for state in state:
+#         state_dict = {}
+#         state_dict['name'] = state.name
+
+#         json_state.append(state_dict)
+
+#     response_data = simplejson.dumps(json_state)
+
+#     return HttpResponse(response_data, mimetype='application/json')
+
+
+
+
+
 
 
 

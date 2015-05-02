@@ -1,0 +1,22 @@
+body {
+    background-color: CC0033;
+}
+
+h1, h2 {
+    color: orange;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+form {
+    margin-left: 560px;
+    margin-right: 500px;
+    width: 50%;
+
+}
+
+#container{
+    margin-left: 200px;
+    margin-right: 1000px;
+    width: 100%;
+}
