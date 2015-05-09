@@ -12,13 +12,19 @@ def index(request):
     state_list = State.objects.all()
     
     states = []
-    for i in state_list:
-        state_lookup_name = i.name.replace(' ', '_')
-        states.append({'name': state_lookup_name, 'display': i.name})
+    for state in state_list:
+        state_lookup_name = state.name.replace(' ', '_')
         # return state_lookup_name
+        # state_name = state_name.replace('_', ' ')
+        # print state_name
+        # state = State.objects.get(name=state_name)
+        # context_dict['state_name'] = state.name
 
-
-    context_dict = {'states': states}
+        # context_dict['pages'] = pages
+        # context_dict['state'] = state
+        states.append({'name': state_lookup_name, 'display': state.name})
+    pages = Page.objects.filter(states=state).prefetch_related("pages")
+    context_dict = {'states': states, 'state_list': state_list, 'pages': pages}
 
 
     if 'search_state' in request.POST:

@@ -7,7 +7,7 @@ class State(models.Model):
         return self.name
 
 class Page(models.Model):
-    states = models.ForeignKey(State)
+    states = models.ForeignKey(State, related_name="pages")
     title = models.CharField(max_length=128)
     url = models.URLField()
     views = models.IntegerField(default=0)

@@ -1,5 +1,5 @@
 body {
-    background-color: CC0033;
+    background-color: #eeeeee;
 }
 
 h1, h2 {
@@ -19,4 +19,16 @@ form {
     margin-left: 200px;
     margin-right: 1000px;
     width: 100%;
+}
+
+.state-links{
+    display: none;
+    font-family: sans-serif;
+    position: absolute;
+    border-style: inset;
+    background-color: #c1e2b3;
+}
+
+.page-links{
+    font-size: small;
 }

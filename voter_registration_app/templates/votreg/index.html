@@ -1,11 +1,10 @@
-{% extends "base.html" %}
 {% load static %}
 
 <html>
 
     <head>
         <title>VotReg</title>
-
+        <link rel="stylesheet" type="text/css" href="static/style/style.css">
     
     </head>
 
@@ -34,15 +33,46 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
     <script src="{% static "maps/datamap.usa.min.js" %}"></script>
-    <div id="container" style="position: absolute; width: 1000px; height: 600px;"></div>
+    <div id="container" style="position: absolute; width: 1300px; height: 780px; left: 70px"></div>
     <script>
         var map = new Datamap({
             element: document.getElementById('container'),
             scope: 'usa',
             done: function(datamap) {
             datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
-                // console.log(geography);
-                window.location = "/state/" + geography.properties.name.toUpperCase().replace(' ', '_') + "/";
+
+                var links = document.getElementById("state_"+ geography.properties.name.toUpperCase()
+                )
+
+{#                function toggle_link(x){#}
+{#                    for (y in geography.properties.name.toUpperCase()) {#}
+{#                        y.style.display = 'none';#}
+
+{#                        if (x.style.display == 'none')#}
+{#                            x.style.display = 'block';#}
+{#                        else#}
+{#                            x.style.display = 'none';#}
+{#                    }#}
+{#                toggle_link(links);#}
+                console.log(links);
+                links.style.display = "inline-block";
+                var rect = this.getBoundingClientRect();
+                console.log(rect);
+                links.style.left = rect.left;
+                links.style.top = rect.top;
+                console.log(links);
+                if (window.lastlink) {
+                    window.lastlink.style.display = 'none';
+
+                }
+                window.lastlink = links;
+                console.log (window.lastlink);
+
+
+
+
+                // console.log(geography);s
+{#                window.location = "/state/" + geography.properties.name.toUpperCase().replace(' ', '_') + "/";#}
             });
         }
     })
@@ -61,6 +91,16 @@
        {% endif %} -->
 
        <div id="regions_div" style="width: 900px; height: 500px;"></div>
+    {% for state in state_list %}
+                <div class="state-links" id="state_{{ state.name }}">{{ state.name }}
+
+                    {% if state.pages %}
+                        {% for page in state.pages.all %}
+                        <div class = "page-links"><a href="{{ page.url }}">{{ page.title }}</a></div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+    {% endfor %}
 
     </body>
 </html>
